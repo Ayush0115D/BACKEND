@@ -1,7 +1,7 @@
 const fs=require("fs");
-//sync 
+//sync ...blocking
 // fs.writeFileSync("./test.txt","helloworld");
-//async
+//async...non blocking
 // fs.writeFile("./test.txt","helloworld",(err)=>{});
 
 // const result= fs.readFileSync("./contact.txt","utf-8") // standard encoding
