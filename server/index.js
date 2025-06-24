@@ -15,10 +15,10 @@ const myServer=http.createServer ((req,res)=>{
             case '/about':
                 const username=myUrl.query.myname;
                 res.end(`Hi,${username}`);
-            break
-            case 'search'://yt do like this
-            const search=myUrl.query.search_query;
-            res.end("here are your results for"+search)
+            break;
+            case '/search'://yt do like this
+            const search= myUrl.query.search_query;
+            res.end("here are your results for " + search)
             break;
 
             default:res.end("404 not found ")
