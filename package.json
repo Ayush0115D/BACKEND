@@ -15,5 +15,8 @@
     "url": "https://github.com/Ayush0115D/NodeJS/issues"
   },
   "homepage": "https://github.com/Ayush0115D/NodeJS#readme",
-  "description": ""
+  "description": "",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
 }
