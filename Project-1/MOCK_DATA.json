@@ -8030,13 +8030,6 @@
         "email": "example@gmal.com",
         "gender": "female",
         "job_title": "web dev"
-    },
-    {
-        "id": 1005,
-        "first_name": "jane2",
-        "last_name": "don",
-        "email": "example@gmal.com",
-        "gender": "female",
-        "job_title": "web dev"
     }
+    
 ]
