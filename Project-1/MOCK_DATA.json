@@ -7998,5 +7998,45 @@
         "email": "tarnorr@123-reg.co.uk",
         "gender": "Male",
         "job_title": "Director of Sales"
+    },
+    {
+        "id": 1001,
+        "first_name": "Ayush",
+        "last_name": "Dhakre",
+        "email": "dhakreayush578@gmal.com",
+        "gender": "male",
+        "job_title": "software dev"
+    },
+    {
+        "id": 1002,
+        "first_name": "john",
+        "last_name": "don",
+        "email": "example@gmal.com",
+        "gender": "male",
+        "job_title": "web dev"
+    },
+    {
+        "id": 1003,
+        "first_name": "jane",
+        "last_name": "don",
+        "email": "example@gmal.com",
+        "gender": "female",
+        "job_title": "web dev"
+    },
+    {
+        "id": 1004,
+        "first_name": "jane2",
+        "last_name": "don",
+        "email": "example@gmal.com",
+        "gender": "female",
+        "job_title": "web dev"
+    },
+    {
+        "id": 1005,
+        "first_name": "jane2",
+        "last_name": "don",
+        "email": "example@gmal.com",
+        "gender": "female",
+        "job_title": "web dev"
     }
 ]
