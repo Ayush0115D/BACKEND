@@ -3,8 +3,19 @@ const fs=require("fs")
 const users=require("./MOCK_DATA.json")
 const app=express();
 const port=8000;
-//middleware
+//middleware-just like a plugin
 app.use(express.urlencoded({extended:false}));
+app.use((req,res,next)=>{
+   console.log("hello from middleware 1");
+   req.myUserName="ayushdhakre.dev";
+//    return res.json({mgs:"hello from middleware1"});
+next();
+})
+app.use((req,res,next)=>{
+   console.log("hello from middleware 2",req.myUserName);
+// return res.end("hey")
+next();
+})
 //Routes
 app.get("/users",(req,res)=>{
    const html=` <ul>
@@ -14,6 +25,7 @@ app.get("/users",(req,res)=>{
 });
 //REST Api
 app.get("/api/users",(req,res)=>{
+        console.log("i am in get route",req.myUserName)
     return res.json(users);
 });
 
