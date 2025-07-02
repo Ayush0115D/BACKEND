@@ -25,6 +25,7 @@ app.get("/users",(req,res)=>{
 });
 //REST Api
 app.get("/api/users",(req,res)=>{
+    res.setHeader("X-myName","ayushh")
         console.log("i am in get route",req.myUserName)
     return res.json(users);
 });
@@ -54,7 +55,7 @@ app.post("/api/users",(req,res)=>{
     const body=req.body
     users.push({...body,id:users.length+1});
     fs.writeFile("./MOCK_DATA.json",JSON.stringify(users),(err,data)=>{
-    return res.json({status:"success",id:users.length})
+    return res.status(201).json({status:"success",id:users.length})
     })
 
     });
