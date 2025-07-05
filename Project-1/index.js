@@ -29,9 +29,9 @@ const userSchema=new mongoose.Schema({
     },
     gender:{
         type:String
-    }
-});
-const  User=mongoose.model("user",userSchema);
+    },
+}, {timestamps:true});
+const  User=mongoose.model("user",userSchema); //db apne ap plural me krdeta db.collection pe users ayega
 //middleware-just like a plugin
 app.use(express.urlencoded({extended:false}));
 app.use((req,res,next)=>{
@@ -46,35 +46,40 @@ app.use((req,res,next)=>{
 next();
 })
 //Routes
-app.get("/users",(req,res)=>{
+app.get("/users",async(req,res)=>{
+    const allDbUsers=await User.find({})
    const html=` <ul>
-        ${users.map((user)=> `<li>${user.first_name}</li>`).join("")}
+        ${allDbUsers.map((user)=> `<li>${user.firstName}-${user.email}</li>`).join("")}
     </ul>`;
-    res.send( html)
+    res.send( allDbUsers)
 });
 //REST Api
-app.get("/api/users",(req,res)=>{
+app.get("/api/users",async(req,res)=>{
+    const allDbUsers=await User.find({})
     res.setHeader("X-myName","ayushh")
     //Always add X to custom headers
         console.log("i am in get route",req.myUserName)
-    return res.json(users);
+    return res.json(allDbUsers);
 });
 
 app
 .route("/api/users/:id")
-.get((req,res)=>{
-    const id=Number(req.params.id);
-    const user=users.find((user)=>user.id===id)
-    if(!user)res.status(404).json({error:"user not found"})
+.get (async(req,res)=>{
+const user=await User.findById(req.params.id);
+  //iske jgh ye   // const id=Number(req.params.id);
+    // const user=users.find((user)=>user.id===id)
+    if(!user) return res.status(404).json({error:"user not found"})
      return res.json(user);
 })
-.patch((req,res)=>{
+.patch(async(req,res)=>{
+    await User.findByIdAndUpdate(req.params.id,{lastName:"changed"});
     //edit user with id
-    return res.json({status:"pending"});
+    return res.json({status:"success"});
 })
-.delete((req,res)=>{
+.delete(async(req,res)=>{
+    await User.findByIdAndDelete (req.params.id,{lastName:"changed"});
     //delete user with id
-    return res.json({status:"pending"});
+    return res.json({status:"success"});
 });
 app.get("/api/users/:id",(req,res)=>{
     const id=Number(req.params.id);
@@ -89,17 +94,17 @@ app.post("/api/users",async(req,res)=>{
         {
         return res.status(400).json({msg:"all fields are required"})
     }
-    users.push({...body,id:users.length+1});
-    fs.writeFile("./MOCK_DATA.json",JSON.stringify(users),(err,data)=>{
-    return res.status(201).json({status:"success",id:users.length})
-    })
+    // users.push({...body,id:users.length+1});
+    // fs.writeFile("./MOCK_DATA.json",JSON.stringify(users),(err,data)=>{
+    // return res.status(201).json({status:"success",id:users.length})
+    // }) //postan se data update kra
     const result= await User.create({
         firstName:body.first_name,
         lastName:body.last_name,
         email:body.email,
         gender:body.gender,
-        jobTitle:body.job_title
-})
+        jobTitle:body.job_title,
+});
 console.log("result",result);
  return res.status(201).json({msg:"success"})
     });
