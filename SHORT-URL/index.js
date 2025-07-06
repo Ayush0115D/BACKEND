@@ -8,3 +8,4 @@ connectToMongoDB('mongodb://localhost:27017/short-url')
 // app.use(express.json());
 app.use("/url", urlRouter);
 app.listen(PORT,()=>console.log(`server started at port:${PORT}`))
+

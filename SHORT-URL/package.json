@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-  
     "start": "nodemon index.js"
   },
   "author": "",
@@ -12,6 +11,7 @@
   "dependencies": {
     "express": "^5.1.0",
     "mongoose": "^8.16.1",
-    "nanoid": "^5.1.5"
+    "nanoid": "^5.1.5",
+    "nodemon": "^3.1.10"
   }
 }
