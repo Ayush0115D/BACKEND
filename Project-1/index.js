@@ -1,9 +1,10 @@
 // const users=require("./MOCK_DATA.json");
 const express=require("express");
-const connectMongoDb=require("./routes/user");
+const {connectMongoDb}=require("./connection");
 const {logReqRes}=require("./middlewares");
 const userRouter=require("./routes/user");
 const app=express();
+app.use("/api/users", userRouter); 
 const port=8000;
 
 //MONGOOSE CONNECTION
@@ -13,10 +14,11 @@ const port=8000;
 // .catch((err)=>console.log("mongo error",err));
 
 //connection
-connectMongoDb("mongodb://127.0.0.1:27017/youtube-app-1")
+connectMongoDb("mongodb://127.0.0.1:27017/youtube-app-1").then (()=>console.log("mongodb connected!"))
 
 //middleware-just like a plugin
 app.use(express.urlencoded({extended:false}));
+app.use(express.json());
 // app.use((req,res,next)=>{
 //    console.log("hello from middleware 1");
 //    req.myUserName="ayushdhakre.dev";
@@ -39,5 +41,5 @@ app.use(logReqRes("log.txt"));
 //     return res.json({status:"pending"})
 //     });
 //routes
-app.use("./user",userRouter)
+app.use("/users",userRouter)
 app.listen(port,()=>console.log(`server started at port:${port}`))

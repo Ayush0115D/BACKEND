@@ -22,15 +22,12 @@ async function handleDeleteUserById(req,res){
 }
 async function handleCreateNewUser(req,res){
       //todo:create new user
-    const body=req.body
+    const body=req.body 
     if(!body || !body.first_name || !body.last_name || !body.email || !body.gender || !body.job_title)
         {
+            
         return res.status(400).json({msg:"all fields are required"})
     }
-    // users.push({...body,id:users.length+1});
-    // fs.writeFile("./MOCK_DATA.json",JSON.stringify(users),(err,data)=>{
-    // return res.status(201).json({status:"success",id:users.length})
-    // }) //postan se data update kra
     const result= await User.create({
         firstName:body.first_name,
         lastName:body.last_name,
@@ -41,7 +38,7 @@ async function handleCreateNewUser(req,res){
     return res.status(201).json({status:"success",id:result._id});
 }
 module.exports={
-    handleGetAllUsers,
+    handleGetAllUsers, 
     handleGetUserById,
     handleUpdateUserById,
     handleDeleteUserById,
