@@ -10,16 +10,7 @@ redirectUrl: {
     required: true
 },
 visitHistory: [ 
-    {
-    date: {
-        type: Date,
-        default: Date.now
-    },
-    userAgent: {
-        type: String,
-        required: true
-    }}
-]
+ {timestamps: {type:Number}}],
 }, 
 {timestamps: true}
 );
