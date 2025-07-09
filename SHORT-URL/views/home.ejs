@@ -1,12 +1,56 @@
-//ejs files are used to render HTML pages,its basically a html files with some javascript code
+<!-- //ejs files are used to render HTML pages,its basically a html files with some javascript code -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 <body>
-    <h1>hey from server</h1>
+<  <h1>URL Shortener</h1>
+
+    <% if (locals.id) { %>
+        <p>Your shortened URL is:
+            <a href="/<%= id %>">http://localhost:8001/<%= id %></a>
+        </p>
+    <% } %>
+
+<div>
+    <form method="POST" action="/url">
+        <label> Enter your original URL</label>
+        <input type="text" name="url" placeholder="Enter URL here" required>
+        <button type="submit">Generate URL</button>
+    </form>
+</div>
+<div>
+    <%if (locals.urls) {%>
+        <table>
+            <thead>S.no</thead>
+            <thead>Short URL</thead>
+            <thead>Redirect</thead>
+            <thead>Clicks</thead>
+            <tbody>
+                <% locals.urls.forEach((url, index) => { %>
+                    <tr>
+                        <td><%= index + 1 %></td>
+                    <td><a href="/<%= url.shortCode %>">http://localhost:8001/<%= url.shortCode %></a></td>
+                      <td><a href="<%= url.originalUrl %>">http://localhost:8001/<%= url.originalUrl %></a></td>
+                        <td><%= url.clicks %></td>
+                    </tr>
+                <% }) %>
+             </tbody>
+        </table>
+        
+    }
+</div>
 </body>
 </html>
