@@ -1,29 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-     <style>
+    <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
+            background-color: #e0e0e0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 0;
         }
 
-        table {
+        header {
+            text-align: center;
+            padding: 40px 0 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 32px;
+            color: #333;
+        }
+
+        .form-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: calc(100vh - 80px);
+        }
+
+        .form-container {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
             width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
+            max-width: 400px;
         }
 
-        th, td {
+        label {
+            font-size: 14px;
+            display: block;
+            margin-bottom: 6px;
+            color: #555;
+        }
+
+        input {
+            width: 50;
+            min-width: 250px;
+            padding: 10px 12px;
+            margin-bottom: 15px;
             border: 1px solid #ccc;
-            padding: 8px;
-            text-align: left;
+            border-radius: 8px;
+            font-size: 16px;
         }
 
-        th {
-            background-color: #eee;
+        input:focus {
+            border-color: #0066ff;
+            outline: none;
+        }
+
+        button {
+            width: 50;
+            min-width: 250px;
+            padding: 12px;
+            background-color: #00040b;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0051cc;
+        }
+
+        .switch {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .switch a {
+            color: #0066ff;
+            text-decoration: none;
+        }
+
+        .switch a:hover {
+            text-decoration: underline;
         }
     </style>
     <meta charset="UTF-8">
