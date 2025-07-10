@@ -11,6 +11,10 @@ redirectUrl: {
 },
 visitHistory: [ 
  {timestamps: {type:Number}}],
+ createdby:{
+    type:moongoose.Schema.Types.ObjectId,
+    ref: "users",
+ }
 }, 
 {timestamps: true}
 );

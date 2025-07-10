@@ -8,8 +8,15 @@ await URL.create({
 shortid: shortId,   
 redirectUrl: body.url, 
 visitHistory: [], 
+createdby:req.user._id, 
 });
-return res.render("home", { id: shortId });
+   // Fetch all URLs to pass to home.ejs
+    const allUrls = await URL.find({});
+
+    return res.render("home", {
+        id: shortId,  // Pass the new shortId to the view
+        urls: allUrls,   //  This is what your EJS file expects:)
+    });
 }
 async function handleGetAnalytics(req, res) {
 const shortId = req.params.shortId;
