@@ -1,11 +1,12 @@
 const express=require("express");
 const path=require("path");
-const urlRouter=require("./routes/url");
 const {connectToMongoDB}=require("./connect");
 const app=express();
 
 const URL = require("./models/url");
 const staticRouter = require("./routes/StaticRouter");
+const urlRouter = require("./routes/urlRouter");
+const userRouter = require("./routes/user");
 const PORT=8001;
 
 connectToMongoDB('mongodb://localhost:27017/short-url')
@@ -16,6 +17,7 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use("/url", urlRouter);
+app.use("/user", userRouter);
 app.use("/", staticRouter);
 
 app.get("/:shortId", async (req, res) => {
