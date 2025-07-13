@@ -1,15 +1,20 @@
-const jwt = require('jsonwebtoken');\
-const secret="ayushd1234";
+const jwt = require('jsonwebtoken');
+const secret="ayushd*1#";
 const sessionIdToUserMap = new Map(); //jb bhi server ko refresh krege usermap khali ho jayega
 function setUser( user) {
-    const payload = {
-        id,
-         ...user,
+    return jwt.sign({
+       _id: user._id,
+        email: user.email
+    },secret)
+
 }
-return jwt.sign(payload,secret)
-}
-function getUser(id) { 
-    return sessionIdToUserMap.get(id);
+function getUser(token) { 
+    if (!token) return null;
+    try{
+        return jwt.verify(token, secret);
+    }catch(error){
+        return null;
+    }
 }   
 module.exports = {
     setUser,        
