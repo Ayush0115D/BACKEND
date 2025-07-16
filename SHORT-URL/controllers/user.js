@@ -13,13 +13,17 @@ async function handleUserLogin(req, res) {
         return res.render("login",{error:"Invalid email or password",});
     } 
    const token= setUser( user);
-    res.cookie("uid", token,{
+   res.setHeader("Authorization", `Bearer ${token}`);
+   res.json({token})
+    // res.cookie("uid", token,{
         // domain :"www.google.com", //localhost will not work because of this domain
         //domain:".piyushgarg.dev" //dot at start means subdomain,so it will work for all subdomains 
         //like "piyushgarg.dev or "blog.piyushgarg.dev"
         //eg-like if we login on google we automatically get logged in on youtube,gmail etc
-    });
-    return res.redirect("/", ); // Render home page after successful login :)
+    // }/
+// );
+    // return res.redirect("/", ); 
+    // Render home page after successful login :)
 }   
 module.exports = {
     handleUserSignup,
