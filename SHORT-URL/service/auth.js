@@ -4,7 +4,8 @@ const sessionIdToUserMap = new Map(); //jb bhi server ko refresh krege usermap k
 function setUser( user) {
     return jwt.sign({
        _id: user._id,
-        email: user.email
+        email: user.email,
+        role: user.role,
     },secret)
 
 }
