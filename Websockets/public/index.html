@@ -7,5 +7,29 @@
 </head>
 <body>
     <h1>Welcome to the Chat App</h1>
+    <input type="text"  id="message" placeholder="Enter your name">
+    <button id="sendbutton">send button</button>
+    <!-- <button onclick="createConnection()">create WS Connection</button> -->
+    <script src="/socket.io/socket.io.js"></script>
+  <script>
+  const socket = io();
+  const sendbutton = document.getElementById("sendbutton");
+  const messageInput = document.getElementById("message");
+
+  sendbutton.addEventListener("click", () => {
+    const message = messageInput.value;
+    socket.emit("user message", message);
+    messageInput.value = ""; // Clear input
+  });
+
+  // Listen for broadcast messages
+  socket.on("chat message", (text) => {
+    const messageElem = document.createElement("div");
+    messageElem.textContent = text;
+    document.body.appendChild(messageElem); // Append to page
+  });
+</script>
+
+    </script>
 </body>
 </html>
